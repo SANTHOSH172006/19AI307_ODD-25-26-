@@ -1,77 +1,97 @@
-# Ex.No:3(b) POLYMORPHISM
+# Ex.No:3(C) ABSTRACTION
 
 ## QUESTION:
-Write a Java program using method overriding. Create a superclass Bank with a method getInterestRate() returning 0. Create subclasses SBI, ICICI, and HDFC that override the method.
+A group of researchers receives mysterious numerical sequences believed to be sent by intelligent alien life. To decode them, scientists have built intelligent SignalAgents that follow abstract processing rules. Each agent listens to the numbers differently.
+
+Your task is to create a system where a base abstract class SignalAgent declares:
 
 ## AIM:
-To write a Java program demonstrating runtime polymorphism using method overriding, where subclasses override a method of the superclass to provide specific implementation.
+To implement Abstraction in Java by defining an abstract class with abstract methods and providing different implementations in derived subclasses.
 
 ## ALGORITHM :
 1.	Start the program.
 2.	Import the necessary package 'java.util'
-3.	Create a superclass Bank with a method getInterestRate() returning 0.
-4. Create subclasses SBI, ICICI, and HDFC that override the method to return different interest rates.
-5. In the main() method, accept bank name at runtime.
-6. Create an object of the appropriate subclass based on the input.
-7. Call the overridden method using a reference of type Bank.
-8. Display the interest rate.
-9. End the program.
+3.	Create an abstract class SignalAgent with an abstract method processNumbers(int[]).
+4. Create subclasses SumAgent and AverageAgent that extend the base class and provide method implementations.
+5. Accept a numerical sequence from the user and store it in an array.
+6. Allow the user to select which type of agent to use for processing.
+7. Display the processed result.
+8. End the program.
 
 ## PROGRAM:
  ```
 /*
-Program to implement a Polymorphism using Java
-Developed by: SANTHOSH D
+Program to implement a Abstraction using Java
+Developed by: SANTHOSH D 
 RegisterNumber:212223220099 
+
 */
 ```
 
 ## SOURCE CODE:
 ```
 import java.util.*;
-class Bank {
-    double getInterestRate() {
-        return 0;
+
+abstract class SignalAgent {
+    abstract int decodeSignal(int[] signal);
+}
+
+class PrimeAgent extends SignalAgent {
+    boolean isPrime(int n) {
+        if (n <= 1) return false;
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0)
+                return false;
+        }
+        return true;
+    }
+
+    @Override
+    int decodeSignal(int[] signal) {
+        int sum = 0;
+        for (int num : signal) {
+            if (isPrime(num))
+                sum += num;
+        }
+        return sum;
     }
 }
 
-class SBI extends Bank {
+class MirrorAgent extends SignalAgent {
     @Override
-    double getInterestRate() {
-        return 6.5;
-    }
-}
-
-class ICICI extends Bank {
-    @Override
-    double getInterestRate() {
-        return 7.0;
-    }
-}
-
-class HDFC extends Bank {
-    @Override
-    double getInterestRate() {
-        return 7.5;
+    int decodeSignal(int[] signal) {
+        int n = signal.length;
+        for (int i = 0; i < n / 2; i++) {
+            if (signal[i] != signal[n - 1 - i]) {
+             
+                return -1;
+            }
+        }
+        return 1;
     }
 }
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String bankName = sc.nextLine().trim();
-        Bank bank;
-        if (bankName.equalsIgnoreCase("SBI")) {
-            bank = new SBI();
-            System.out.println("SBI Rate: " + bank.getInterestRate() + "%");
-        } else if (bankName.equalsIgnoreCase("ICICI")) {
-            bank = new ICICI();
-            System.out.println("ICICI Rate: " + bank.getInterestRate() + "%");
-        } else if (bankName.equalsIgnoreCase("HDFC")) {
-            bank = new HDFC();
-            System.out.println("HDFC Rate: " + bank.getInterestRate() + "%");
-        } else {
-            System.out.println("Invalid bank name.");
+        int n = sc.nextInt();
+        int[] signal = new int[n];
+        for (int i = 0; i < n; i++)
+            signal[i] = sc.nextInt();
+        int type = sc.nextInt();
+        
+        SignalAgent agent;
+        
+        if (type == 1) {
+            agent = new PrimeAgent();
+            System.out.println(agent.decodeSignal(signal));
+        } else if (type == 2) {
+            agent = new MirrorAgent();
+            int result = agent.decodeSignal(signal);
+            if (result == 1)
+                System.out.println("BALANCED");
+            else
+                System.out.println("BROKEN");
         }
     }
 }
@@ -83,10 +103,9 @@ public class Main {
 
 ## OUTPUT:
 
-![java32](https://github.com/ABINAYA-27-76/19AI307_ODD-25-26-/blob/508d76d2dc9f661dc9ddb5bb22d00b081114519e/19AI307_JAVA(25-26)/Module-03/DAY-2/java32.png)
-
+![java33](https://github.com/ABINAYA-27-76/19AI307_ODD-25-26-/blob/838b2936e04f552789e71372bc8cc875126469d1/19AI307_JAVA(25-26)/Module-03/DAY-3/java33.png)
 
 ## RESULT:
+Thus, the Java program demonstrating Abstraction using an abstract class and derived classes was executed successfully.
 
-Thus, the Java program demonstrating Polymorphism using Method Overriding was successfully executed.
 
