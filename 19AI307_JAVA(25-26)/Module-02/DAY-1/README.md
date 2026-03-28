@@ -28,8 +28,8 @@ To write a Java program that demonstrates the concept of Class and Object using 
  ```
 /*
 Program to implement a Class and Objects using Java
-Developed by: Guru Raghav Ponjeevith V 
-RegisterNumber:212223220027 
+Developed by: SANTHOSH D
+RegisterNumber:212223220099
 
 */
 ```
