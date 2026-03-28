@@ -1,21 +1,6 @@
 # Ex.No:3(b) POLYMORPHISM
 
 ## QUESTION:
-
-
-## AIM:
-
-
-## ALGORITHM :
-1.	Start the program.
-2.	Import the necessary package 'java.util'
-3.	
-
-
-
-# Ex.No:3(b) POLYMORPHISM
-
-## QUESTION:
 Write a Java program using method overriding. Create a superclass Bank with a method getInterestRate() returning 0. Create subclasses SBI, ICICI, and HDFC that override the method.
 
 ## AIM:
